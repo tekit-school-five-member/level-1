@@ -22,7 +22,7 @@ git clone https://github.com/tekit-school-five-member/level-1.git
 
 <br>
 
-2. <h4>본인 이름의 branch 생성
+2. 본인 이름의 branch 생성
 
 ```
 git checkout -b <yourName>
