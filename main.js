@@ -7,15 +7,21 @@
 const clickPanel = document.querySelectorAll('.panel');
 
 function cyclePanelArray() {
-  clickPanel.forEach(clickPanelArray);
-}
-
-function clickPanelArray(panel) {
-  panel.addEventListener('click', clickHandler);
+  clickPanel.forEach((item) => item.addEventListener('click', clickHandler));
 }
 
 function clickHandler(event) {
+  console.log(event.target);
+
+  if (
+    event.target.tagName.startsWith('H') ||
+    event.target.classList.contains('active')
+  ) {
+    return;
+    // 이미 'active' 클래스가 추가된 요소를 클릭한 경우 추가적인 동작을 방지하기 위해 함수를 종료
+  }
   removeClassList();
+
   addClassList(event.target);
 }
 

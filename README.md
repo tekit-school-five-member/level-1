@@ -103,3 +103,25 @@ elem.classList.remove('active');
 #### function removeClassList()
 
 - click 시 모든 active class 삭제
+
+### 3. 트러블 슈팅
+
+1)문제 h3태그인 제목을 클릭 시 ClassList.remove 메서드가 호출되는 현상
+![Alt text](image.png)
+
+    해결 방법 : 조건 처리
+
+    function clickHandler(event) {
+    console.log(event.target);
+
+    if (
+        event.target.tagName.startsWith('H') ||
+        event.target.classList.contains('active')
+    ) {
+        return;
+        // 이미 'active' 클래스가 추가된 요소를 클릭한 경우 추가적인 동작을 방지하기 위해 함수를 종료
+    }
+    removeClassList();
+
+    addClassList(event.target);
+    }
