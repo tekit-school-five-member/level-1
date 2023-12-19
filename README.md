@@ -61,7 +61,7 @@ git checkout -b feature/<yourName>
 - [ ] 선택된 element에 active 클래스 추가
 
 ```js
-elem.classList.add("active");
+elem.classList.add('active');
 ```
 
 <br>
@@ -69,5 +69,59 @@ elem.classList.add("active");
 - [ ] 선택되지 않은 element는 active클래스 제거
 
 ```js
-elem.classList.remove("active");
+elem.classList.remove('active');
 ```
+
+---
+
+## 1. 결과물
+
+<video src="Expanding%20Cards%20-%20Chrome%202023-12-19%2000-33-35.mp4" controls title="Title"></video>
+
+## 2. 코드 설명
+
+#### const clickPanel = document.querySelectorAll('.panel')
+
+- '.panel' 이름으로 된 class 선택자 모두 선택
+
+#### function cyclePanelArray()
+
+- forEach로 선택된 배열의 .panel node들 순환
+
+#### function clickPanelArray(panel)
+
+- 배열로된 .panel node 들 click 이벤트
+
+#### function clickHandler(event)
+
+- click 이벤트 실행 시 핸들러 함수 호출
+
+#### function addClassList(node)
+
+- click 시 active로 class 추가
+
+#### function removeClassList()
+
+- click 시 모든 active class 삭제
+
+### 3. 트러블 슈팅
+
+1)문제 h3태그인 제목을 클릭 시 ClassList.remove 메서드가 호출되는 현상
+![Alt text](image.png)
+
+    해결 방법 : 조건 처리
+
+    function clickHandler(event) {
+    console.log(event.target);
+
+    if (
+        event.target.tagName.startsWith('H') ||
+        event.target.classList.contains('active')
+    ) {
+        return;
+        // 이미 'active' 클래스가 추가된 요소를 클릭한 경우 추가적인 동작을 방지하기 위해 함수를 종료
+    }
+    removeClassList();
+
+    addClassList(event.target);
+    }
