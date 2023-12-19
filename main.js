@@ -19,6 +19,7 @@ function clickHandler(event) {
   ) {
     return;
     // 이미 'active' 클래스가 추가된 요소를 클릭한 경우 추가적인 동작을 방지하기 위해 함수를 종료
+    //
   }
   removeClassList();
 
