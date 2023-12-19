@@ -23,6 +23,7 @@ function clickHandler(event) {
   removeClassList();
 
   addClassList(event.target);
+  //
 }
 
 function addClassList(node) {
