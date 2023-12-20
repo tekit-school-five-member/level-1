@@ -10,18 +10,19 @@ const ACTIVE_CLASS = "active";
 
 // 클래스 추가 및 제거 함수
 function toggleClass(elem, className) {
-  const parent = elem.parentElement;
-  [...parent.children].forEach((child) => child.classList.remove(className));
+  elem.parentElement
+    .querySelectorAll(`.${className}`)
+    .forEach((child) => child.classList.remove(className));
   elem.classList.add(className);
 }
 
 // click 이벤트 함수
-function handleClick(e) {
+function handleClick(e, targetElem) {
   e.preventDefault();
-  const panel = e.target.closest("div");
-  if (!panel) return;
+  const clickedElem = e.target.closest(targetElem);
+  if (!clickedElem) return;
 
-  toggleClass(panel, ACTIVE_CLASS);
+  toggleClass(clickedElem, ACTIVE_CLASS);
 }
 
-container.addEventListener("click", handleClick);
+container.addEventListener("click", (e) => handleClick(e, ".panel"));
